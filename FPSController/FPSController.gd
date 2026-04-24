@@ -268,5 +268,17 @@ func _headbob_effect(delta):
 		0
 	)
 
+func get_interactable_component_at_shapecat() -> InteractableComponent:
+	for i in %InteractShapeCast3D.get_collision_count():
+		# dozvoljava colliding sa igracem
+		if i > 0 and %InteractShapeCast3D.get_collider(0) != $".":
+			return null
+		if %InteractShapeCast3D.get_collider(i).get_node_or_null("InteractableComponent") is InteractableComponent:
+			return %InteractShapeCast3D.get_collider(i).get_node_or_null("InteractableComponent")
+	return null
+
 func _process(delta):
-	pass
+	if get_interactable_component_at_shapecat():
+		get_interactable_component_at_shapecat().hover_cursor(self)
+		if Input.is_action_just_pressed("interact"):
+			get_interactable_component_at_shapecat().interact_with()

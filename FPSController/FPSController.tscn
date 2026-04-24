@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://dx6mpgfqr6ngt"]
+[gd_scene load_steps=7 format=3 uid="uid://dx6mpgfqr6ngt"]
 
 [ext_resource type="PackedScene" uid="uid://gvm0me264r32" path="res://models/disguise-glasses.glb" id="1_jryqt"]
 [ext_resource type="Script" uid="uid://m0w7uldrkjt0" path="res://FPSController/FPSController.gd" id="1_vcg3l"]
@@ -7,6 +7,9 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_f6xud"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_2veyp"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_vcg3l"]
+radius = 1.0
 
 [node name="CharacterBody3D" type="CharacterBody3D"]
 platform_on_leave = 2
@@ -41,6 +44,13 @@ unique_name_in_owner = true
 [node name="Camera3D" type="Camera3D" parent="HeadOriginalPosition/Head/CameraSmooth"]
 unique_name_in_owner = true
 cull_mask = 1048573
+
+[node name="InteractShapeCast3D" type="ShapeCast3D" parent="HeadOriginalPosition/Head/CameraSmooth/Camera3D"]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.880105, -1.33991)
+shape = SubResource("SphereShape3D_vcg3l")
+max_results = 2
+collide_with_areas = true
 
 [node name="StairsAheadRayCast3D" type="RayCast3D" parent="."]
 unique_name_in_owner = true
